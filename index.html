@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
 </head>
+
 <body>
     <div class="container">
         <h1>Flights</h1>
         <div class="row">
             <table class="responsive-table">
                 <thead>
-                  <tr>
-                      <th>Altitude</th>
-                      <th>Flight Id</th>
-                      <th>West-East</th>
-                  </tr>
+                    <tr>
+                        <th>Altitude</th>
+                        <th>Flight Id</th>
+                        <th>East-west</th>
+                    </tr>
                 </thead>
-        
+
                 <tbody class="body">
-                  
+
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/ctrl.js"></script>
+    <script>
+        $(ctrlModule.init)
+    </script>
 </body>
+
 </html>
