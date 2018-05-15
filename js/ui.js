@@ -5,7 +5,7 @@ const row = document.querySelector('.row')
 const createFlightView = (airplane, i) => {
      const {altitude, id, trak} = airplane
         return ( `<tr class="flight-field" data-flight-id=${i}>
-        <td>${trak > 180?"<img width='20px' src='../img/planewest.png'/>":"<img width='20px' src='../img/planeeast.png'/>"}</td>
+        <td>${trak > 180?"<img width='20px' src='../img/planewest.png' title='West'/>":"<img width='20px' src='../img/planeeast.png' title='East'/>"}</td>
         <td>${altitude}</td>
         <td>${id}</td>
         </tr>`
@@ -18,7 +18,7 @@ const createSingleFlightView = (airplane, logo) => {
     <td>${model}</td>
     <td>${from}</td>
     <td>${to}</td>
-    <td><img src="${logo}"></td>
+    <td><img width="50px" src="${logo}" alt=${logo}></td>
     </tr>`
 )
 }
@@ -33,11 +33,13 @@ const displayFlights = (airplanes) => {
       $tableBody.append(airplaneData)
     });
 }
+
 const displaySingleFlight = (airplane, logo) => {
     const airplaneData = createSingleFlightView(airplane,logo)
     $tableBody.append(airplaneData) 
     
 }
+
 
 const displayError = () => { 
     row.innerHTML = `<h3>Error</h3>`

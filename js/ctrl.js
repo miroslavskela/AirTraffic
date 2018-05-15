@@ -1,15 +1,15 @@
 const ctrlModule = ((module1, module2) => {
-    const row = document.querySelector('.row')
+    $row = $('.row')
+    $spinner = $('.spinner1')
     const init = () => {
-
-
+        showLoading()
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 const baseUrl = module1.baseUrl
                 fetchFlights(baseUrl, position.coords.latitude, position.coords.longitude)
                 setInterval(function(){
                     fetchFlights(baseUrl, position.coords.latitude,position.coords.longitude);
-                }, 6000)
+                }, 60000)
             }, showError)
         } else if (!navigator.geolocation) {
             row.innerHTML = "<p>Geolocation is not supported by your browser</p>"
@@ -23,7 +23,7 @@ const ctrlModule = ((module1, module2) => {
     }
     const fetchFlights = (baseUrl, lat, lng) => {
         let url = baseUrl + lat + "&lng=" + lng + "&fDstL=0&fDstU=100"
-
+       
         $.ajax({
             url,
             dataType: "jsonp"
@@ -35,8 +35,9 @@ const ctrlModule = ((module1, module2) => {
 
 
     onSuccessHandler = (response) => {
-        const adaptedData = module1.adaptData(response)
-        module2.displayFlights(adaptedData)
+       $spinner.empty()
+      const adaptedData = module1.adaptData(response)
+      module2.displayFlights(adaptedData)
 
         $(document).on('click', '.flight-field', function () {
             let flightIndex = $(this).attr("data-flight-id")
@@ -46,21 +47,15 @@ const ctrlModule = ((module1, module2) => {
         })
     }
 
-
-
     onErrorHandler = () => {
         module2.displayError
     }
 
-    // registerEventHandlers = (array) => {
-    //     $(document).on('click', '.flight-field', function () {
-    //         let flightIndex = $(this).attr("data-flight-id")
-    //         console.log(flightIndex);
-    //         localStorage.setItem("flightInfo",array[flightIndex] )
-    //         // location.assign('singlePage.html')
-    //     })
-    // }
+    showLoading = () => {
+        $spinner.append('<div class="spinner"></div>')
+    }
 
+   
 
     return {
         init

@@ -1,7 +1,8 @@
 const ctrlSingleFlightModule = ((module1, module2) => {
     const initSingleFlight = () => {
-        const singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
-        const manufacturer = singleFlightData.man
+
+    const singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
+    const manufacturer = singleFlightData.man
        fetchLogo(manufacturer)
       
 
@@ -47,14 +48,12 @@ const ctrlSingleFlightModule = ((module1, module2) => {
         })
     }
 
-    // const promise1 = new Promise((resolve, reject) => {
-    //     const singleFlightData = JSON.parse(localStorage.getItem('flightInfo'))
-    //     if (singleFlightData) {
-    //         resolve(fetchLogo(singleFlightData.man))
-    //     } else {
-    //         reject('<h1>Error</h1>')
-    //     }
-    // })
+    const button = document.querySelector('.waves-effect')
+    button.addEventListener('click', function(){
+     
+        window.history.pushState({},"",'http://127.0.0.1:5500/index.html')
+      
+    })
 
     return {
         initSingleFlight
