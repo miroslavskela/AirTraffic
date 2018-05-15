@@ -12,14 +12,16 @@
 
 <body>
     <div class="container">
-        <h1 class="text center">Flights</h1>
+        <h1 class="text center">Flight Details</h1>
         <div class="row">
             <table class="responsive-table">
                 <thead>
                     <tr>
-                        <th>East-west</th>
-                        <th>Altitude</th>
-                        <th>Flight Id</th>
+                        <th>Manufacturer</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Company Logo</th>
+
                     </tr>
                 </thead>
 
@@ -36,9 +38,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/data.js"></script>
     <script src="./js/ui.js"></script>
-    <script src="./js/ctrl.js"></script>
+    <script src="./js/ctrlSingle.js"></script>
     <script>
-        $(ctrlModule.init)
+       $(ctrlSingleFlightModule.initSingleFlight)
     </script>
 </body>
 
