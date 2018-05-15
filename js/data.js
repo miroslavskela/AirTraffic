@@ -1,19 +1,19 @@
-var dataModule = (function(){
-var baseUrl =  "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?"
-function Flight(flight){
+const dataModule = (function(){
+const baseUrl =  "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?"
+class Flight{
+    constructor(flight){
     this.id = flight.id
     this.altitude = flight.alt
     this.model = flight.mdl
     this.ldv = flight.lastDv
 }
-
-
-function adaptData(flights){
-var flightsArray = []
-
-for(var i = 0; i < flights.length; i++){
-    flightsArray[i] = new Flight(flights[i])
 }
+
+
+const adaptData = (flights) => {
+const flightsArray = flights.map((flight) => {
+    return new Flight(flight)
+})
 
 return flightsArray
 }
