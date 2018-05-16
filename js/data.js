@@ -4,11 +4,11 @@ const baseUrl =  "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.j
 const baseUrl1 = "https://autocomplete.clearbit.com/v1/companies/suggest?query="
 
 class Flight{
-    constructor(flight){
+    constructor(flight, ldv){
     this.id = flight.Id
     this.altitude = flight.Alt || "No data"
     this.model = flight.Mdl
-    this.ldv = flight.lastDv
+    this.ldv = ldv 
     this.trak = flight.Trak
     this.from = flight.From || "No data"
     this.to = flight.To || "No data"
@@ -24,9 +24,10 @@ class Logo{
 
 
 const adaptData = (flight) => {
+    const ldv = flight.lastDv
     const flights = flight.acList
     const flightsArray = flights.map((flight) => {
-        return new Flight(flight)
+        return new Flight(flight, ldv)
 })
 
 return flightsArray
@@ -38,7 +39,7 @@ const adaptLogo = (logo) => {
 } else{
     return new Logo(logo)
 }
-} //function that accepts logo and makes logo object
+} //function that accepts logo and makes logo object, if there is array of responses always take first item of array
 
 
 return{

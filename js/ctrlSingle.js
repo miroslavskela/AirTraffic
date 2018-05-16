@@ -1,43 +1,27 @@
-const ctrlSingleFlightModule = ((module1, module2) => {
+const ctrlSingleFlightModule = (function(module1, module2){
     
     
     const initSingleFlight = () => {
 
-    const singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
-    const manufacturer = singleFlightData.man
+    let singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
+    let manufacturer = singleFlightData.man
     
     fetchLogo(manufacturer)
-      
-
-
-    } // function that is invoked in html script when document is ready
-
-    /*const fetchLogo = (name) => {
-        let url = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${name}`
-        $.ajax({
-            url,
-            dataType: "json"
-        })
-            .done(onSuccessHandler)
-            .fail(onErrorHandler)
-            
-    }*/
-
-  
+      } // function that is invoked in html script when document is ready
 
     getFlightDetails = (response) => {
-        const singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
+        let singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
         module2.displaySingleFlight(singleFlightData,response)  
     }// function that parse data from localstorage and displays single flight data and logo which is received as response parameter
 
     fetchLogo = (name) => {
-        const baseUrl1 = module1.baseUrl1;
+        let baseUrl1 = module1.baseUrl1;
         return fetch(`${baseUrl1}${name}`)
         .then((response) =>{
             return response.json()
         })
         .then((response) => {
-          const adaptedLogo =  module1.adaptLogo(response)
+          const adaptedLogo =  module1.adaptLogo(response)// function that returns logo object from data module
           return adaptedLogo.logo
         }).then((response) => {
            return getFlightDetails(response)

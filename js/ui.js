@@ -1,7 +1,7 @@
 const uiModule = (function(){
 $tableBody = $('.body')
-const row = document.querySelector('.row')
-const tbody = document.querySelector('.body')
+
+
 
 const createFlightView = (flight, i) => {
      const {altitude, id, trak} = flight
@@ -26,7 +26,7 @@ const createSingleFlightView = (flight, logo) => {
 
 const displayFlights = (flights) => {
     $tableBody.empty()
-    const sortedArray =  flights.slice().sort(function(a,b){
+    const sortedArray =  flights.sort(function(a,b){
         return b.altitude-a.altitude
     })
 
@@ -45,7 +45,7 @@ const displaySingleFlight = (flight, logo) => {
 
 const displayError = () => { 
     const errorMsg = new Error("Could not fetch data!")
-    tbody.innerHTML = `<tr><td class="error" colspan="3">${errorMsg.message}<td></tr>`
+    $tableBody.append(`<tr><td class="error" colspan="3">${errorMsg.message}<td></tr>`)
 } // display error function 
 
 
