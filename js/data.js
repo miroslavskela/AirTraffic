@@ -1,6 +1,7 @@
 const dataModule = (function(){
 
 const baseUrl =  "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat="
+const baseUrl1 = "https://autocomplete.clearbit.com/v1/companies/suggest?query="
 
 class Flight{
     constructor(flight){
@@ -43,6 +44,7 @@ const adaptLogo = (logo) => {
 return{
     adaptData,
     adaptLogo,
-    baseUrl
-} //functions that are exposed 
+    baseUrl,
+    baseUrl1
+} //functions and datas that are exposed 
 })()
