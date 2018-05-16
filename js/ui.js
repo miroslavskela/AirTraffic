@@ -1,53 +1,58 @@
 const uiModule = (function(){
 $tableBody = $('.body')
-const row = document.querySelector('.row')
 
-const createFlightView = (airplane, i) => {
-     const {altitude, id, trak} = airplane
-        return ( `<tr class="flight-field" data-flight-id=${i}>
-        <td>${trak > 180?"<img width='20px' src='../img/planewest.png'/>":"<img width='20px' src='../img/planeeast.png'/>"}</td>
-        <td>${altitude}</td>
-        <td>${id}</td>
+
+
+const createFlightView = (flight, i) => {
+     const {altitude, id, trak} = flight
+        return ( `<tr>
+        <td class="flight-field" data-flight-id=${i}>${trak > 180?"<img class='sidewest' width='20px' src='../img/planewest.png' title='West'/>":"<img class='sideeast' width='20px' src='../img/planeeast.png' title='East'/>"}</td>
+        <td class="flight-field" data-flight-id=${i}>${altitude}</td>
+        <td class="flight-field" data-flight-id=${i}>${id}</td>
         </tr>`
     )
-}
+} // function that accepts flight and makes table cells of flight data and also add attr index which is used to show single flight data
 
-const createSingleFlightView = (airplane, logo) => {
-    const {model, from, to} = airplane
+const createSingleFlightView = (flight, logo) => {
+    const {model, from, to} = flight
     return ( `<tr>
     <td>${model}</td>
     <td>${from}</td>
     <td>${to}</td>
-    <td><img src="${logo}"></td>
+    <td><img width="50px" src="${logo}" alt=${logo}></td>
     </tr>`
 )
-}
+} // function that accepts flight and logo and makes table cells with those data to show info about single flight
 
-const displayFlights = (airplanes) => {
+const displayFlights = (flights) => {
     $tableBody.empty()
-   const sortedArray =  airplanes.slice().sort(function(a,b){
+    const sortedArray =  flights.sort(function(a,b){
         return b.altitude-a.altitude
     })
-    sortedArray.forEach((airplane, i) => {
-      const airplaneData  = createFlightView(airplane,i)
-      $tableBody.append(airplaneData)
-    });
-}
-const displaySingleFlight = (airplane, logo) => {
-    const airplaneData = createSingleFlightView(airplane,logo)
-    $tableBody.append(airplaneData) 
+
+    sortedArray.forEach((flight, i) => {
+        const flightData  = createFlightView(flight,i)
+        $tableBody.append(flightData)
+    })
+} // functions that accepts array of flights and for each flight makes flight view and append it to table body
+
+const displaySingleFlight = (flight, logo) => {
+    const flightData = createSingleFlightView(flight,logo)
+    $tableBody.append(flightData) 
     
-}
+} // function that accepts one flight and create single flight view and append it to table body
+
 
 const displayError = () => { 
-    row.innerHTML = `<h3>Error</h3>`
-}
+    const errorMsg = new Error("Could not fetch data!")
+    $tableBody.append(`<tr><td class="error" colspan="3">${errorMsg.message}<td></tr>`)
+} // display error function 
 
 
 return{
     displayFlights,
     displayError,
     displaySingleFlight
-}
+} // functions that are exposed
 
 })()
