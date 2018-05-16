@@ -1,14 +1,16 @@
+$color1:#ef9a9a ;
+$color2:white;
+$color3:red;
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
-$color1:lightblue;
-$color2:white;
 
 body{
     background:$color1;
 }
+
 table{
     border-collapse: unset;
    
@@ -40,12 +42,8 @@ table{
     }
 }
 
-a.waves-light{
-    display:block;
-    width: 10%;
-    margin: 0 auto;
-   
-}
+
+
 table.responsive-table tbody tr{
     @media only screen and(max-width:992px){
         vertical-align: middle;
@@ -72,7 +70,18 @@ table.responsive-table th{
     }
 }
 
+a.waves-light{
+    display:block;
+    width: 10%;
+    margin: 0 auto;
+   
+}
 
+/*error*/
+.error{
+    color:$color3;
+    text-align: center;
+}
 
 
 

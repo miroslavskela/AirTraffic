@@ -4,7 +4,7 @@
   box-sizing: border-box; }
 
 body {
-  background: lightblue; }
+  background: #ef9a9a; }
 
 table {
   border-collapse: unset; }
@@ -20,11 +20,6 @@ table {
     cursor: pointer; }
   table tbody tr td {
     text-align: center; }
-
-a.waves-light {
-  display: block;
-  width: 10%;
-  margin: 0 auto; }
 
 @media only screen and (max-width: 992px) {
   table.responsive-table tbody tr {
@@ -42,6 +37,16 @@ a.waves-light {
 @media only screen and (max-width: 992px) {
   table.responsive-table th {
     vertical-align: middle; } }
+
+a.waves-light {
+  display: block;
+  width: 10%;
+  margin: 0 auto; }
+
+/*error*/
+.error {
+  color: red;
+  text-align: center; }
 
 /*spinner*/
 .spinner {
