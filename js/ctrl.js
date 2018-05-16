@@ -1,6 +1,8 @@
 const ctrlModule = ((module1, module2) => {
     $row = $('.row')
     $spinner = $('.spinner1')
+    $tbody = $('.body')
+    const flightField = document.querySelector('.flight-field')
     
 
     const init = () => {
@@ -18,8 +20,9 @@ const ctrlModule = ((module1, module2) => {
             }, showError)
         } else if (!navigator.geolocation) {
             $spinner.empty()
-            $row.empty()
-            $row.append("<p  class='error' >Geolocation is not supported by your browser</p>")
+            $tbody.empty()
+            $tbody.append(`<tr><td class='error' colspan='3'>Geolocation is not supported by your browser<td></tr>`)
+            
         }
 
     }// function that is invoked in html script when document is ready
@@ -27,8 +30,8 @@ const ctrlModule = ((module1, module2) => {
 
     showError = (error) => {
         $spinner.empty()
-        $row.empty()
-        $row.append(`<h2  class="error">Error ${error.code}: ${error.message}</h2>`)
+        $tbody.empty()
+        $tbody.append(`<tr><td class='error' colspan='3'>Error ${error.code}:${error.message}<td></tr>`)
     } // show error function which displays error with navigator position
 
     
@@ -36,9 +39,9 @@ const ctrlModule = ((module1, module2) => {
      fetchFlights = (baseUrl, lat, lng) => {
         let url = baseUrl + lat + "&lng=" + lng + "&fDstL=0&fDstU=100"
        
-        $.ajax({
+        $.get({
             url,
-            dataType:"jsonp"
+            dataType: "jsonp"
         })
             .done(onSuccessHandler)
             .fail(onErrorHandler)
@@ -47,16 +50,29 @@ const ctrlModule = ((module1, module2) => {
 
 
     onSuccessHandler = (response) => {
+        $tbody.empty()
        $spinner.empty()
        console.log(response);
       const adaptedData = module1.adaptData(response)
       module2.displayFlights(adaptedData)
-
-        $(document).on('click', '.flight-field', function () {
+      
+        document.addEventListener('click', function(event){
+            
+            if( event.target.className == 'flight-field'){
+                event.stopPropagation()
+                let target = event.target
+                let flightIndex = target.getAttribute("data-flight-id")
+                console.log(flightIndex, target);
+                localStorage.setItem("flightInfo", JSON.stringify(adaptedData[flightIndex]))
+                location.assign('singleFlight.html')
+            }
+        })
+        /*$(document).on('click', '.flight-field', function () {
             let flightIndex = $(this).attr("data-flight-id")
             localStorage.setItem("flightInfo", JSON.stringify(adaptedData[flightIndex]))
             location.assign('singleFlight.html')
-        })
+        })*/ // =============>      easier way to attach event with jquery
+
     } //function that is called on done request and it displays data and when document is ready it add eventlisteners
      //on each flight and displays onli one flight from adaptedData array
     

@@ -1,13 +1,14 @@
 const uiModule = (function(){
 $tableBody = $('.body')
 const row = document.querySelector('.row')
+const tbody = document.querySelector('.body')
 
 const createFlightView = (flight, i) => {
      const {altitude, id, trak} = flight
-        return ( `<tr class="flight-field" data-flight-id=${i}>
-        <td>${trak > 180?"<img class='sidewest' width='20px' src='../img/planewest.png' title='West'/>":"<img class='sideeast' width='20px' src='../img/planeeast.png' title='East'/>"}</td>
-        <td>${altitude}</td>
-        <td>${id}</td>
+        return ( `<tr>
+        <td class="flight-field" data-flight-id=${i}>${trak > 180?"<img class='sidewest' width='20px' src='../img/planewest.png' title='West'/>":"<img class='sideeast' width='20px' src='../img/planeeast.png' title='East'/>"}</td>
+        <td class="flight-field" data-flight-id=${i}>${altitude}</td>
+        <td class="flight-field" data-flight-id=${i}>${id}</td>
         </tr>`
     )
 } // function that accepts flight and makes table cells of flight data and also add attr index which is used to show single flight data
@@ -42,9 +43,9 @@ const displaySingleFlight = (flight, logo) => {
 } // function that accepts one flight and create single flight view and append it to table body
 
 
-const displayError = (error) => { 
+const displayError = () => { 
     const errorMsg = new Error("Could not fetch data!")
-    row.innerHTML = `<h3 class="error">${errorMsg.message}</h3>`
+    tbody.innerHTML = `<tr><td class="error" colspan="3">${errorMsg.message}<td></tr>`
 } // display error function 
 
 

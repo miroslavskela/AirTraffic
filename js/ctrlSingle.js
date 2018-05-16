@@ -47,21 +47,14 @@ const ctrlSingleFlightModule = ((module1, module2) => {
     } // fetch logo and then invoke single flight details function with logo as argument
 
 
-     /*function ChangeUrl(page, url) {
-         if (typeof (history.pushState) != "undefined") {
-             var obj = {Page: page, Url: url};
-             history.pushState(obj, obj.Page, obj.Url);
-         } else {
-             window.location.href = "index.html";
-
-         }
-     }*/
+    
 
 
     const button = document.querySelector('.waves-effect')
     button.addEventListener('click', function(event){
         event.preventDefault()
-        // ChangeUrl(null, 'http://127.0.0.1:5500/index.html');  ====> ain't working, just change path in address bar
+        
+        // history.pushState(null, '','http://127.0.0.1:5500/index.html' ); ============> doesn't work, just change te path in address bar
         window.history.back()
     }) // go back to all flight page, but with reloading data
 

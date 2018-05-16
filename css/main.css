@@ -46,7 +46,8 @@ a.waves-light {
 /*error*/
 .error {
   color: red;
-  text-align: center; }
+  text-align: center;
+  font-size: 22px; }
 
 /*spinner*/
 .spinner {
