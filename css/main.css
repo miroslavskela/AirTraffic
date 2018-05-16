@@ -72,5 +72,30 @@ a.waves-light {
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 0; } }
+@keyframes movingEast {
+  from {
+    margin-right: 0px; }
+  to {
+    margin-right: 30px; } }
+@keyframes movingWest {
+  from {
+    margin-left: 0px; }
+  to {
+    margin-left: 30px; } }
+.sidewest {
+  animation-name: movingWest;
+  animation-duration: 4s;
+  animation-iteration-count: infinite; }
+  @media only screen and (max-width: 992px) {
+    .sidewest {
+      animation: none; } }
+
+.sideeast {
+  animation-name: movingEast;
+  animation-duration: 4s;
+  animation-iteration-count: infinite; }
+  @media only screen and (max-width: 992px) {
+    .sideeast {
+      animation: none; } }
 
 /*# sourceMappingURL=main.css.map */

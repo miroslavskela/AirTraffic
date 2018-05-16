@@ -1,5 +1,7 @@
 const dataModule = (function(){
+
 const baseUrl =  "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat="
+
 class Flight{
     constructor(flight){
     this.id = flight.Id
@@ -10,7 +12,7 @@ class Flight{
     this.from = flight.From || "No data"
     this.to = flight.To || "No data"
     this.man = flight.Man
-}
+ }
 } // Flight object
 
 class Logo{
@@ -21,9 +23,9 @@ class Logo{
 
 
 const adaptData = (flight) => {
-const flights = flight.acList
-const flightsArray = flights.map((flight) => {
-    return new Flight(flight)
+    const flights = flight.acList
+    const flightsArray = flights.map((flight) => {
+        return new Flight(flight)
 })
 
 return flightsArray

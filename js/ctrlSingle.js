@@ -3,7 +3,8 @@ const ctrlSingleFlightModule = ((module1, module2) => {
 
     const singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
     const manufacturer = singleFlightData.man
-       fetchLogo(manufacturer)
+    
+    fetchLogo(manufacturer)
       
 
 
@@ -19,21 +20,13 @@ const ctrlSingleFlightModule = ((module1, module2) => {
             
     // }
 
-    
-    onSuccessHandler = (response) => {
-        console.log(response);
-        const adaptedLogo = module1.adaptLogo(response)
-        return adaptedLogo.logo
-    }
-    onErrorHandler = () => {
-        module2.displayError
-    }
+  
 
     getFlightDetails = (response) => {
         const singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
-        module2.displaySingleFlight(singleFlightData,response)
-       
+        module2.displaySingleFlight(singleFlightData,response)  
     }
+
     fetchLogo = (name) => {
         return fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${name}`)
         .then((response) =>{
@@ -45,6 +38,8 @@ const ctrlSingleFlightModule = ((module1, module2) => {
           return adaptedLogo.logo
         }).then((response) => {
            return getFlightDetails(response)
+        }).catch((error) => {
+            module2.displayError
         })
     }
 
@@ -58,7 +53,6 @@ const ctrlSingleFlightModule = ((module1, module2) => {
         }
     }
 
-  
 
     const button = document.querySelector('.waves-effect')
     button.addEventListener('click', function(event){

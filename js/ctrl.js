@@ -34,7 +34,7 @@ const ctrlModule = ((module1, module2) => {
        
         $.ajax({
             url,
-            dataType: "jsonp"
+            dataType:"jsonp"
         })
             .done(onSuccessHandler)
             .fail(onErrorHandler)
@@ -55,9 +55,10 @@ const ctrlModule = ((module1, module2) => {
         })
     }
 
-    onErrorHandler = () => {
+    onErrorHandler = (error) => {
         $spinner.empty()
-        module2.displayError
+        console.log(error);
+        module2.displayError(error)
     }
 
     showLoading = () => {
