@@ -1,12 +1,10 @@
 const ctrlSingleFlightModule = (function(module1, module2){
     
-    
     const initSingleFlight = () => {
+      let singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
+      let manufacturer = singleFlightData.man
 
-    let singleFlightData = JSON.parse(localStorage.getItem('flightInfo')) 
-    let manufacturer = singleFlightData.man
-    
-    fetchLogo(manufacturer)
+      fetchLogo(manufacturer)
       } // function that is invoked in html script when document is ready
 
     getFlightDetails = (response) => {
@@ -16,6 +14,7 @@ const ctrlSingleFlightModule = (function(module1, module2){
 
     fetchLogo = (name) => {
         let baseUrl1 = module1.baseUrl1;
+
         return fetch(`${baseUrl1}${name}`)
         .then((response) =>{
             return response.json()
@@ -23,9 +22,11 @@ const ctrlSingleFlightModule = (function(module1, module2){
         .then((response) => {
           const adaptedLogo =  module1.adaptLogo(response)// function that returns logo object from data module
           return adaptedLogo.logo
-        }).then((response) => {
+        })
+        .then((response) => {
            return getFlightDetails(response)
-        }).catch((error) => {
+        })
+        .catch((error) => {
             module2.displayError()
         })
     } // fetch logo and then invoke single flight details function with logo as argument

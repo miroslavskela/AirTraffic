@@ -71,7 +71,7 @@ const ctrlModule = (function(module1, module2){
         })*/ // =============>      easier way to attach event with jquery
 
     } //function that is called on done request and it displays data and when document is ready it add eventlisteners
-     //on each flight and displays only one flight from adaptedData array
+     //on each flight and displays only one flight from adaptedData array using localStorage
     
 
     onErrorHandler = () => {

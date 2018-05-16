@@ -31,7 +31,7 @@ const adaptData = (flight) => {
 })
 
 return flightsArray
-} // function that receives flights and and makes Flight object of them
+} // function that receives flights and and makes Flight object of them and returns array of flight objects
 
 const adaptLogo = (logo) => {
     if(logo.length > 1){

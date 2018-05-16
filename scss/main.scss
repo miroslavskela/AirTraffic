@@ -73,6 +73,8 @@ a.waves-light{
     display:block;
     width: 10%;
     margin: 0 auto;
+    font-size:1.5vw;
+    
    
 }
 
@@ -87,11 +89,10 @@ a.waves-light{
 
 /*spinner*/
 .spinner {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     margin: 100px auto;
-    background-color: #333;
-  
+    background-color:$color4;
     border-radius: 100%;  
     -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
     animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -143,6 +144,6 @@ a.waves-light{
     animation-duration: 4s;
     animation-iteration-count: infinite;
     @media only screen and(max-width:992px){
-        animation:none;
+    animation:none;
      }
 }
