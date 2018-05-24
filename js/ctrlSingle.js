@@ -13,25 +13,27 @@ const ctrlSingleFlightModule = (function(module1, module2){
     }// function that parse data from localstorage and displays single flight data and logo which is received as response parameter
 
     fetchLogo = (name) => {
-        let baseUrl1 = module1.baseUrl1;
+        let url = `${module1.baseUrl1}${name}`;
 
-        return fetch(`${baseUrl1}${name}`)
-        .then((response) =>{
-            return response.json()
+        $.get({
+            url,
         })
-        .then((response) => {
-          const adaptedLogo =  module1.adaptLogo(response)// function that returns logo object from data module
-          return adaptedLogo.logo
-        })
-        .then((response) => {
-           return getFlightDetails(response)
-        })
-        .catch((error) => {
-            module2.displayError()
-        })
-    } // fetch logo and then invoke single flight details function with logo as argument
+            .done(onSuccessHandler)
+            .fail(onErrorHandler)
+    } 
+
+onSuccessHandler = (response) =>{
+    const adaptedLogo = module1.adaptLogo(response)
+    if(adaptedLogo){
+        getFlightDetails(adaptedLogo.logo)    
+    }
 
 
+}
+
+onErrorHandler = () => {
+    module2.displayError()
+}
     
 
 

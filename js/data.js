@@ -14,6 +14,14 @@ class Flight{
     this.to = flight.To || "No data"
     this.man = flight.Man
  }
+
+ getImage(){
+     if(this.trak > 180){
+         return ("<img class='sidewest' width='20px' src='../img/planewest.png' title='West'/>")
+     } else{
+         return ("<img class='sideeast' width='20px' src='../img/planeeast.png' title='East'/>")
+     }
+ }
 } // Flight object
 
 class Logo{

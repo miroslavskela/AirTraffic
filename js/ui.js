@@ -6,7 +6,7 @@ $tableBody = $('.body')
 const createFlightView = (flight, i) => {
      const {altitude, id, trak} = flight
         return ( `<tr>
-        <td class="flight-field" data-flight-id=${i}>${trak > 180?"<img class='sidewest' width='20px' src='../img/planewest.png' title='West'/>":"<img class='sideeast' width='20px' src='../img/planeeast.png' title='East'/>"}</td>
+        <td class="flight-field" data-flight-id=${i}>${flight.getImage()}</td>
         <td class="flight-field" data-flight-id=${i}>${altitude}</td>
         <td class="flight-field" data-flight-id=${i}>${id}</td>
         </tr>`
