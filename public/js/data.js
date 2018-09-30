@@ -1,4 +1,4 @@
-const dataModule = (function(){
+
 
 const baseUrl =  "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat="
 const baseUrl1 = "https://autocomplete.clearbit.com/v1/companies/suggest?query="
@@ -49,11 +49,5 @@ const adaptLogo = (logo) => {
 }
 } //function that accepts logo and makes logo object, if there is array of responses always take first item of array
 
+module.exports = {Flight, Logo, adaptData, adaptLogo, baseUrl, baseUrl1}
 
-return{
-    adaptData,
-    adaptLogo,
-    baseUrl,
-    baseUrl1
-} //functions and datas that are exposed 
-})()

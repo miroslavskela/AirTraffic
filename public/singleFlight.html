@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Cache-control" content="public">
     <title>AirTraffic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link rel="stylesheet" href=".././css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
 
 </head>
 
@@ -20,24 +19,27 @@
                 </div>
          </nav>
 
+
     <div class="container">
-        <h1 class="text center">Flights</h1>
+        <h1 class="text center">Flight Details</h1>
         <div class="row">
             <table class="responsive-table">
                 <thead>
                     <tr>
-                        <th>East-west</th>
-                        <th>Altitude</th>
-                        <th>Flight Id</th>
+                        <th>Manufacturer</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Company Logo</th>
+
                     </tr>
                 </thead>
-                
+
                 <tbody class="body">
-                    
+
                 </tbody>
             </table>
         </div>
-        <div class="spinner1"></div>
+        <a class="waves-effect waves-light btn-small #ef5350 red lighten-1" href="index.html">Back</a>
     </div>
 
    
@@ -46,13 +48,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src=".././js/data.js"></script>
-    <script src=".././js/ui.js"></script>
-    <script src=".././js/ctrl.js"></script>
-    <script>
-        
-        $(ctrlModule.init)
-    </script>
+    <script src="./dist/bundleSingle.js"></script>
+    <script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+        + ':35729/livereload.js"></'
+        + 'script>')</script>
+   
+    
 </body>
 
 </html>

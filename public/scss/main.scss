@@ -1,0 +1,23 @@
+$color1:#ef9a9a ;
+$color2:white;
+$color3:red;
+$color4:green;
+
+@import './partials/basicReset';
+body{
+    background:$color1;
+}
+
+@import './partials/table';
+
+@import './partials/button';
+/*error*/
+@import './partials/error';
+
+
+
+/*spinner*/
+@import './partials/spinner';
+
+
+@import './partials/images';

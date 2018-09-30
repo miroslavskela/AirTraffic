@@ -1,0 +1,56 @@
+table{
+    border-collapse: unset;
+   
+    thead{
+        border-bottom:1px solid black;
+        tr{ 
+             font-size: 20px;
+             font-weight: 700;
+             th{
+                 text-align: center;
+                }
+            }
+       
+            }
+    tbody{
+        tr{
+            
+            &:hover{
+                background: $color2;
+                cursor: pointer;
+            
+            }
+            td{
+                text-align: center;   
+            }
+        }
+    }
+}
+
+
+
+table.responsive-table tbody tr{
+    @media only screen and(max-width:992px){
+        vertical-align: middle;
+       
+    }
+}
+
+table.responsive-table thead tr{
+    @media only screen and(max-width:992px){
+        vertical-align: middle;
+        font-size: 14px;
+       
+    }
+}
+
+table.responsive-table td{
+    @media only screen and(max-width:992px){
+        vertical-align: middle;
+    }
+}
+table.responsive-table th{
+    @media only screen and(max-width:992px){
+        vertical-align: middle;
+    }
+}

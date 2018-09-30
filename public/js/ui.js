@@ -1,8 +1,5 @@
-const uiModule = (function(){
-$tableBody = $('.body')
 
-
-
+$tableBody = $('.body');
 const createFlightView = (flight, i) => {
      const {altitude, id, trak} = flight
         return ( `<tr>
@@ -15,11 +12,12 @@ const createFlightView = (flight, i) => {
 
 const createSingleFlightView = (flight, logo) => {
     const {model, from, to} = flight
+    const url = "http://logo.clearbit.com/";
     return ( `<tr>
     <td>${model}</td>
     <td>${from}</td>
     <td>${to}</td>
-    <td><img width="50px" src="${logo}" alt=${logo}></td>
+    <td><img width="50px" src=${url}${logo}.com  alt=${logo}></td>
     </tr>`
 )
 } // function that accepts flight and logo and makes table cells with those data to show info about single flight
@@ -49,10 +47,6 @@ const displayError = () => {
 } // display error function 
 
 
-return{
-    displayFlights,
-    displayError,
-    displaySingleFlight
-} // functions that are exposed
 
-})()
+
+module.exports = {displayFlights, displayError, displaySingleFlight}

@@ -1,4 +1,5 @@
-const ctrlModule = (function(module1, module2){
+    const {Flight, adaptData,  baseUrl} = require('./data.js');
+    const {displayFlights, displaySingleFlight, displayError} = require('./ui.js')
     $row = $('.row')
     $spinner = $('.spinner1')
     $tbody = $('.body')
@@ -6,25 +7,18 @@ const ctrlModule = (function(module1, module2){
 
     const init = () => {
         showLoading()
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                const baseUrl = module1.baseUrl
-
                 fetchFlights(baseUrl, position.coords.latitude, position.coords.longitude)
-
                 setInterval(function(){
                     fetchFlights(baseUrl, position.coords.latitude,position.coords.longitude);
                 }, 60000) // reload every 60 seconds
-
-            }, showError)
+            }, showError) //for denied geoLocation
         } else if (!navigator.geolocation) {
             $spinner.empty()
             $tbody.empty()
-            $tbody.append(`<tr><td class='error' colspan='3'>Geolocation is not supported by your browser<td></tr>`)
-            
+            $tbody.append(`<tr><td class='error' colspan='3'>Geolocation is not supported by your browser<td></tr>`)   
         } // if browser supports geolocation it asks for permission to track user location
-
     }// function that is invoked in html script when document is ready
 
 
@@ -50,8 +44,8 @@ const ctrlModule = (function(module1, module2){
     onSuccessHandler = (response) => {
        $spinner.empty()
        console.log(response);
-       const adaptedData = module1.adaptData(response) // function that returns flight object, from data module
-       module2.displayFlights(adaptedData)
+       const adaptedData = adaptData(response) // function that returns flight object, from data module
+      displayFlights(adaptedData)
       
        document.addEventListener('click', function(event){
          if( event.target.className == 'flight-field'){
@@ -64,27 +58,19 @@ const ctrlModule = (function(module1, module2){
                 location.assign('singleFlight.html')
             }
         })
-        /*$(document).on('click', '.flight-field', function () {
-            let flightIndex = $(this).attr("data-flight-id")
-            localStorage.setItem("flightInfo", JSON.stringify(adaptedData[flightIndex]))
-            location.assign('singleFlight.html')
-        })*/ // =============>      easier way to attach event with jquery
-
     } //function that is called on done request and it displays data and when document is ready it add eventlisteners
      //on each flight and displays only one flight from adaptedData array using localStorage
     
 
     onErrorHandler = () => {
         $spinner.empty()
-        module2.displayError()
+        displayError()
     }// error function 
 
     showLoading = () => {
         $spinner.append('<div class="spinner"></div>')
     }//function that attach spinner 
+ 
 
-    return {
-        init
-    } //exposed function
-
-})(dataModule, uiModule)
+    document.addEventListener('DOMContentLoaded', init)
+// module.export = {init}
